@@ -1,0 +1,29 @@
+.col-md-4.offset-md-4.weather-plugin
+    .card.mb-4
+        .card-body
+            h5#place Ottawa
+            .temp
+                span.temp-val#temp-celsius 0°C
+                span.temp-val#temp-fahrenheit 0°F
+                br
+                span.temp-val#low low: 0°C, 0°F
+                br
+                span.temp-val#high high: 0°C, 0°F
+                center.icon
+                    i#icon.wi.wi-night-sleet
+                    label(for='icon') Sunny
+            .sun
+                hr
+                H5#section Sun & Moon
+                center.moon.icon
+                    i#icon.wi.wi-moon-alt-waxing-gibbous-4
+                    label(for='icon') waxing gibbous
+                #times
+                    #sunrise.float-left 1:00am
+                    #sunset.float-right 24:00pm
+                    br
+                    .progress
+                        .progress-bar.bg-warning.progress-bar-striped(role='progressbar' style='width:50%' aria-valuenow='50' aria-valuemin='0' aria-valuemax='100')
+                    center 
+                        div#daylight 0 hours of daylight
+                        div#time-until Sunset is in -1 hour

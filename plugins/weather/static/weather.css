@@ -1,0 +1,59 @@
+.weather-plugin .temp-val#temp-celsius,
+.weather-plugin .temp-val#temp-fahrenheit {
+    font-size: 2rem;
+    font-weight: 600;
+    animation: weather-plugin-fadein 1s;
+    padding-right: 0.5em;
+}
+
+.weather-plugin .temp-val#temp-celsius {
+    padding-right: 0.5em;
+}
+
+.weather-plugin .temp-val#low, 
+.weather-plugin .temp-val#high {
+    font-size: 0.7rem;
+    font-weight: 600;
+    animation: weather-plugin-fadein 1s;
+    font-style: oblique;
+    color: #839ca3;
+}
+
+.weather-plugin .icon #icon {
+    font-size: 6rem;
+    font-weight: 600;
+    color: #95c7d5;
+    animation: weather-plugin-fadein 1s;
+    
+}
+
+.weather-plugin .icon label {
+    color: #95c7d5;
+    animation: weather-plugin-fadein 1s;
+    padding-top: 1.5em;
+    width: 100%;
+    text-align: center;
+}
+
+.weather-plugin .sun hr {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.weather-plugin .sun#times {
+    width: 100%;
+}
+
+.weather-plugin #times #sunrise {
+    animation: weather-plugin-fadein 1s;
+}
+
+.weather-plugin #times #sunset {
+    animation: weather-plugin-fadein 1s;
+}
+
+
+@keyframes weather-plugin-fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
