@@ -26,15 +26,18 @@ head
 
     title Assistant
 
-body
-   header
-    .navbar.navbar-dark.bg-dark.shadow-sm
-        .container.d-flex.justify-content-between
-            a(href="#").navbar-brand.d-flex.align-items-center Assistant
+body.bg-light
+    .body-content
+        img#wallpaper
+        header
+        .navbar.navbar-dark.bg-dark.shadow-sm
+            .container.d-flex.justify-content-between
+                a(href="#").navbar-brand.d-flex.align-items-center Assistant
 
-    main(role="main")
-        .album.py-5.bg-light
-            .container
-                .row
-                    each plugin in plugins
-                        !=plugin.body
+        main(role="main")
+            .album.py-5
+                .container
+                    .row
+                        each plugin in plugins
+                            if(plugin.view)
+                                !=plugin.body

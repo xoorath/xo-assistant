@@ -1,13 +1,17 @@
 .weather-plugin .temp-val#temp-celsius,
 .weather-plugin .temp-val#temp-fahrenheit {
-    font-size: 2rem;
     font-weight: 600;
     animation: weather-plugin-fadein 1s;
     padding-right: 0.5em;
 }
 
 .weather-plugin .temp-val#temp-celsius {
+    font-size: 2rem;
     padding-right: 0.5em;
+}
+
+.weather-plugin .temp-val#temp-fahrenheit {
+    font-size:1.5rem;
 }
 
 .weather-plugin .temp-val#low, 
@@ -22,13 +26,13 @@
 .weather-plugin .icon #icon {
     font-size: 6rem;
     font-weight: 600;
-    color: #95c7d5;
+    color: black;
     animation: weather-plugin-fadein 1s;
     
 }
 
 .weather-plugin .icon label {
-    color: #95c7d5;
+    color: black;
     animation: weather-plugin-fadein 1s;
     padding-top: 1.5em;
     width: 100%;

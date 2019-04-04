@@ -6,5 +6,6 @@
     },
     "search.exclude": {
         "**/logs": true
-    }
+    },
+    "editor.renderWhitespace": "boundary"
 }

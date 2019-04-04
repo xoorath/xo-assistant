@@ -52,6 +52,10 @@ export function SetPluginDependencies(css:string[], js:string[]) {
 }
 
 function RenderPlugin(plugin: Plugin): void {
+    if(!plugin.view) {
+        return;
+    }
+    
     let renderTime = new Stopwatch();
     let renderVars: any = GetStandardRenderVars();
     renderVars.name = plugin.name;

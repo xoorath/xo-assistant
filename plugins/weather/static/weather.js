@@ -150,8 +150,6 @@ $(document).ready(function() {
         ParseOWMTempAndIcon(data);
         ParseOWMSunriseSunset(data);
         ParseOWMMoon(data);
-
-        console.log(data);
     }
 
     function GetWeatherStatus() {

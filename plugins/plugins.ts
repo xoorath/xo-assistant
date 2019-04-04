@@ -69,9 +69,7 @@ export function LoadPlugins() {
                         plugin.view = `${name}.pug`
 
                         if(!fs.existsSync(path.join(__dirname, name, plugin.view))) {
-                            winston.error(`↳ ↳ Error loading plugin "${name}". No view at "${name}/${plugin.view} (${stopwatch.Stop()})"`);
-                            anyFailed = true;
-                            return;
+                            plugin.view = null;
                         }
 
                         plugins.push(plugin);

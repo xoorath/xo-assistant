@@ -30,7 +30,7 @@ class WeatherWidget extends Plugin {
             let reqTimer = new Stopwatch();
             request(url, {}, (err:Error, response:IncomingMessage, body:string) => {
                 if(err) {
-                    winston.error(`(plugin:weather) Error getting response from openweathermap.org (${reqTimer.Stop()})`, err.message);
+                    winston.error(`(plugin:weather) Error getting response from ${host} (${reqTimer.Stop()})`, err.message);
                     res.status(500).send('Internal server error.');
                     return;
                 }
