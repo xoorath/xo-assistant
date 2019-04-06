@@ -12,7 +12,7 @@ $(document).ready(function() {
         });
     }
 
-    setInterval(GetImageOfTheDay, 60 * 1000);
+    setInterval(GetImageOfTheDay, 60 * 60 * 1000);
     GetImageOfTheDay();
 
 

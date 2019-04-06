@@ -4,52 +4,62 @@ $(document).ready(function() {
     // this is EDT and with daylight savings will cease being true.
     let timezone = -4;
 
-    $place              = $('.weather-plugin #place');
+    var $future1_day        = $('.weather-plugin .week .day#day1 #day');
+    var $future1_icon       = $('.weather-plugin .week .day#day1 .icon #icon');
+    var $future1_icon_label = $('.weather-plugin .week .day#day1 .icon label');
 
-    $celsius            = $('.weather-plugin .temp #temp-celsius');
-    $fahrenheit         = $('.weather-plugin .temp #temp-fahrenheit');
-    $temp_low           = $('.weather-plugin .temp #low');
-    $temp_high          = $('.weather-plugin .temp #high');
-    $temp_icon          = $('.weather-plugin .temp .icon #icon');
-    $temp_icon_label    = $('.weather-plugin .temp .icon label');
+    var $future2_day        = $('.weather-plugin .week .day#day2 #day');
+    var $future2_icon       = $('.weather-plugin .week .day#day2 .icon #icon');
+    var $future2_icon_label = $('.weather-plugin .week .day#day2 .icon label');
 
-    $sunrise    = $('.weather-plugin .sun #sunrise');
-    $sunset     = $('.weather-plugin .sun #sunset');
-    $sunprog    = $('.weather-plugin .sun .progress-bar');
-    $daylight   = $('.weather-plugin .sun #daylight');
-    $timeuntil  = $('.weather-plugin .sun #time-until');
+    var $future3_day        = $('.weather-plugin .week .day#day3 #day');
+    var $future3_icon       = $('.weather-plugin .week .day#day3 .icon #icon');
+    var $future3_icon_label = $('.weather-plugin .week .day#day3 .icon label');
 
-    $moon_icon          = $('.weather-plugin .moon.icon #icon');
-    $moon_icon_label    = $('.weather-plugin .moon.icon label');
+    var $futurex_day = [$future1_day, $future2_day, $future3_day];
+    var $futurex_icon = [$future1_icon, $future2_icon, $future3_icon];
+    var $futurex_label = [$future1_icon_label, $future2_icon_label, $future3_icon_label];
+
+    var $sunrise    = $('.weather-plugin .sun #sunrise');
+    var $sunset     = $('.weather-plugin .sun #sunset');
+    var $sunprog    = $('.weather-plugin .sun .progress-bar');
+    var $daylight   = $('.weather-plugin .sun #daylight');
+    var $timeuntil  = $('.weather-plugin .sun #time-until');
+
+    var $moon_icon          = $('.weather-plugin .moon.icon #icon');
+    var $moon_icon_label    = $('.weather-plugin .moon.icon label');
+
+    window.WeatherWidget = window.WeatherWidget || {};
+    window.WeatherWidget.View = window.WeatherWidget.View || new WeatherWidgetView();
+    /**
+     * @type {WeatherWidgetView}
+     */
+    var View = window.WeatherWidget.View;
+    
+    
     
     function TempKToF(K) { return ((K-273.15)*1.8)+32; }
     function TempKToC(K) { return K-273.15; }
+    function Weekday(date) {
+        var dayOfWeek = new Date(date).getDay();    
+        return isNaN(dayOfWeek) ? null : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
+    }
 
     moment.relativeTimeThreshold('m',  120);
 
-    function ParseOWMLocation(data) {
-        $place.text(data.name);
-    }
 
     function ParseOWMTempAndIcon(data) {
         var nowTime = Math.floor(Date.now() / 1000);
-        var weatherClass = 'wi wi-owm-';
-        var isDaytime = (nowTime > data.sys.sunrise && nowTime <= data.sys.sunset);
-        weatherClass +=  isDaytime? 'day-' : 'night-';
-        weatherClass += data.weather[0].id;
-        $temp_icon
-            .removeClass()
-            .addClass('wi')
-            .addClass(weatherClass);
+        var dayNight = (nowTime > data.sys.sunrise && nowTime <= data.sys.sunset) ? 'day' : 'night';
         
-        $temp_icon_label.text(data.weather[0].description);
+        View.SetCurrentWeatherIcon(data.weather[0].id, dayNight, 'owm');
+        View.SetCurrentWeatherDescription(data.weather[0].description);
 
-        
-        $celsius.text(      Math.floor(TempKToC(data.main.temp)) + '°C')
-        $fahrenheit.text(   Math.floor(TempKToF(data.main.temp)) + '°F');
+        View.SetCurrentTemp         (data.main.temp,        'k');
+        View.SetCurrentDailyLow     (data.main.temp_min,    'k');
+        View.SetCurrentDailyHigh    (data.main.temp_max,    'k');
 
-        $temp_low.text('Low: ' + Math.floor(TempKToC(data.main.temp_min)) + '°C | ' + Math.floor(TempKToF(data.main.temp_min)) + '°F');
-        $temp_high.text('High: ' + Math.floor(TempKToC(data.main.temp_max)) + '°C | ' + Math.floor(TempKToF(data.main.temp_max)) + '°F');
+        View.SetCurrentWindspeed    (data.wind.speed,       'm/s');
     }
 
     function ParseOWMSunriseSunset(data) {
@@ -146,7 +156,7 @@ $(document).ready(function() {
     }
 
     function ParseOWM(data) {
-        ParseOWMLocation(data);
+        View.SetCity(data.name);
         ParseOWMTempAndIcon(data);
         ParseOWMSunriseSunset(data);
         ParseOWMMoon(data);
@@ -162,6 +172,52 @@ $(document).ready(function() {
         });
     }
 
-    setInterval(GetWeatherStatus, 5000);
+    setInterval(GetWeatherStatus, 10 * 1000);
     GetWeatherStatus();
+
+    function GetForecast() {
+        $.get('/plugins/weather/forecast/' + city)
+        .done(function(data, textStatus, jqXHR){
+            console.log(data);
+            let day0 = new Date();
+            day0.setHours(0, 0, 0, 0);
+            console.log(day0);
+            let days = [
+                (day0/1000) + ((24) * 60 * 60 ),
+                (day0/1000) + ((24+24) * 60 * 60 ),
+                (day0/1000) + ((24+24+24) * 60 * 60 ),
+            ];
+            let icons = [[],[],[]];
+            console.log(JSON.stringify(days));
+            let counted = [0, 0, 0];
+            let temps = [0, 0, 0];
+            for(let i = 0; i < data.list.length; ++i ) {
+                for(let j = 0; j < days.length; ++j) {
+                    if(data.list[i].dt <= days[j]) {
+                        temps[j] += data.list[i].main.temp;
+                        icons[j].push(data.list[i].weather[0].icon);
+                        counted[j]++;
+                        break;
+                    }
+                }
+            }
+
+            for(let i = 0; i < counted.length; ++i) {
+                if(counted[i] > 0) {
+                    temps[i] /= counted[i];
+                    $futurex_day[i].text(Weekday(new Date(days[i]*1000)));
+                    $futurex_label[i].text(Math.round(TempKToC(temps[i])));
+                    console.log(icons[i]);
+                }
+            }
+            console.log(JSON.stringify(counted));
+            console.log(JSON.stringify(temps));
+        })
+        .fail(function(jqXHR, textStatus, errorThrown){
+            console.error(textStatus, errorThrown);
+        });
+    }
+
+    setInterval(GetForecast, 60 * 60 * 1000);
+    GetForecast();
 });

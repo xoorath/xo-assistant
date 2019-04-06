@@ -1,42 +1,90 @@
-.weather-plugin .temp-val#temp-celsius,
-.weather-plugin .temp-val#temp-fahrenheit {
+.weather-plugin .temp .temp-val#temp-celsius,
+.weather-plugin .temp .temp-val#temp-fahrenheit {
+    display: inline-block;
     font-weight: 600;
+    width: auto;
     animation: weather-plugin-fadein 1s;
     padding-right: 0.5em;
 }
 
-.weather-plugin .temp-val#temp-celsius {
-    font-size: 2rem;
+.weather-plugin .temp .temp-val#temp-celsius {
+    font-size: 2.2rem;
     padding-right: 0.5em;
 }
 
-.weather-plugin .temp-val#temp-fahrenheit {
-    font-size:1.5rem;
+.weather-plugin .temp .temp-val#temp-fahrenheit {
+    font-size: 1.8rem;
 }
 
-.weather-plugin .temp-val#low, 
-.weather-plugin .temp-val#high {
-    font-size: 0.7rem;
-    font-weight: 600;
-    animation: weather-plugin-fadein 1s;
-    font-style: oblique;
-    color: #839ca3;
+.weather-plugin .temp-val .degree-unit {
+    top:-0.5em;
+    display: inline-block;
+    position: relative;
+    font-size: 60%;
+    line-height: 0;
+    vertical-align: baseline;
 }
 
 .weather-plugin .icon #icon {
     font-size: 6rem;
     font-weight: 600;
-    color: black;
+    color: #5d646b;
     animation: weather-plugin-fadein 1s;
-    
 }
 
-.weather-plugin .icon label {
-    color: black;
+.weather-plugin .wind-and-highlow .temp-val#low, 
+.weather-plugin .wind-and-highlow .temp-val#high,
+.weather-plugin .week .day .temp-val {
+    font-size: 0.7rem;
+    font-weight: 600;
+    animation: weather-plugin-fadein 1s;
+    font-style: oblique;
+    color: #7d888c;
+}
+
+.weather-plugin .wind-and-highlow .temp-val .temp-fahrenheit {
+    margin-left: 0.8em;
+}
+
+.weather-plugin .wind-and-highlow .icon #icon,
+.weather-plugin .week .day .icon #icon {
+    font-size: 3rem;
+}
+
+.weather-plugin .week .day .temp-val {
+    display: inline-block;
+}
+
+.weather-plugin .week .day .temp-val#temp-fahrenheit {
+    padding-left: 1em;
+}
+
+.weather-plugin .week .day label {
+    margin-top:0.8em;
+}
+
+.weather-plugin .week .day center.icon {
+    margin-bottom: -0.9em;
+}
+
+.weather-plugin .wind-and-highlow {
+    /* eliminate row margins of -15px */
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.weather-plugin .temp .icon label,
+.weather-plugin .sun .icon label {
+    color: #5d646b;
     animation: weather-plugin-fadein 1s;
     padding-top: 1.5em;
     width: 100%;
-    text-align: center;
+}
+.weather-plugin .wind-and-highlow .icon #description {
+    display: inline-block;
+    margin-left: 1em;
+    color: #7d888c;
+    font-size: 0.8rem;
 }
 
 .weather-plugin .sun hr {
@@ -55,6 +103,7 @@
 .weather-plugin #times #sunset {
     animation: weather-plugin-fadein 1s;
 }
+
 
 
 @keyframes weather-plugin-fadein {

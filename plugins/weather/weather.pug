@@ -3,15 +3,45 @@
         .card-body
             h5#place Ottawa
             .temp
-                span.temp-val#temp-celsius 0°C
-                span.temp-val#temp-fahrenheit 0°F
-                br
-                span.temp-val#low low: 0°C, 0°F
-                br
-                span.temp-val#high high: 0°C, 0°F
+                .temp-val#temp-celsius 0°C
+                .temp-val#temp-fahrenheit 0°F
                 center.icon
                     i#icon.wi.wi-night-sleet
                     label(for='icon') Sunny
+            .wind-and-highlow.row
+                .temp.section.offset-xl-1.col-xl-4.col-lg-5
+                    span.temp-val#low low: 0°C, 0°F
+                    br
+                    span.temp-val#high high: 0°C, 0°F
+                .icon.section.col-xl-7.col-lg-7
+                    i#icon.wi.wi-wind-beaufort-0
+                    span#description hurricane force
+            hr
+            .week.row
+                .day.col-lg-4#day1
+                    center#day Thursday
+                    center.icon
+                        i#icon.wi.wi-night-sleet
+                        label(for='icon') Sunny
+                    center
+                        .temp-val#temp-celsius 0°C
+                        .temp-val#temp-fahrenheit 0°F
+                .day.col-lg-4#day2
+                    center#day Friday
+                    center.icon
+                        i#icon.wi.wi-night-sleet
+                        label(for='icon') Sunny
+                    center
+                        .temp-val#temp-celsius 0°C
+                        .temp-val#temp-fahrenheit 0°F
+                .day.col-lg-4#day3
+                    center#day Saturday
+                    center.icon
+                        i#icon.wi.wi-night-sleet
+                        label(for='icon') Sunny
+                    center
+                        .temp-val#temp-celsius 0°C
+                        .temp-val#temp-fahrenheit 0°F
             .sun
                 hr
                 H5#section Sun & Moon
