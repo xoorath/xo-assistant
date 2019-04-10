@@ -6,12 +6,18 @@ head
     link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous')
     // Jquery JS
     script(src='https://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=' crossorigin='anonymous')
+    // Jquery plugins
+    // jquery.cookie
+    script(src='/static/jquery-plugins/cookie/jquery.cookie.js')
     // Popper JS
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1' crossorigin='anonymous')
     // Boostrap JS
     script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous')
     // Moment JS
     script(src='/static/moment/moment.js')
+    // Google fonts
+    // https://fonts.google.com/specimen/Roboto?selection.family=Roboto
+    link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400")
 
     // Index CSS
     link(rel='stylesheet' href='/static/index.css')
@@ -29,10 +35,13 @@ head
 body.bg-light
     .body-content
         img#wallpaper
+        .youtube-video-background
+            .youtube-video-foreground
+                iframe#wallpaper-youtube(src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
         header
-        .navbar.navbar-dark.bg-dark.shadow-sm
-            .container.d-flex.justify-content-between
-                a(href="#").navbar-brand.d-flex.align-items-center Assistant
+            .navbar.navbar-dark.bg-dark.shadow-sm
+                .container.d-flex.justify-content-between
+                    a(href="#").navbar-brand.d-flex.align-items-center Assistant
 
         main(role="main")
             .album.py-5

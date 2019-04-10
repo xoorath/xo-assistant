@@ -16,3 +16,14 @@
     text-align: right;
     opacity: 0.8;
 }
+.nasa-hide-btn {
+    position: absolute;
+    left:0px;
+    bottom: 0px;
+    color: white;
+    text-shadow: 1px 1px black;
+    padding-bottom: 0.75em;
+}
+.nasa-hide-btn:hover {
+    color: cornflowerblue;
+}

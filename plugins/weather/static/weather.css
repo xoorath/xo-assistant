@@ -1,112 +1,132 @@
-.weather-plugin .temp .temp-val#temp-celsius,
-.weather-plugin .temp .temp-val#temp-fahrenheit {
-    display: inline-block;
-    font-weight: 600;
-    width: auto;
-    animation: weather-plugin-fadein 1s;
-    padding-right: 0.5em;
+/*
+ * Settings for the whole widget.
+ */
+.weather-plugin {
+    color: purple;
+    font-family: 'Roboto', sans-serif;
 }
 
-.weather-plugin .temp .temp-val#temp-celsius {
-    font-size: 2.2rem;
-    padding-right: 0.5em;
+.weather-plugin .today .weather-icon {
+    font-size: 1em;
+    display: inline;
 }
 
-.weather-plugin .temp .temp-val#temp-fahrenheit {
-    font-size: 1.8rem;
-}
-
-.weather-plugin .temp-val .degree-unit {
-    top:-0.5em;
-    display: inline-block;
-    position: relative;
-    font-size: 60%;
-    line-height: 0;
-    vertical-align: baseline;
-}
-
-.weather-plugin .icon #icon {
-    font-size: 6rem;
-    font-weight: 600;
-    color: #5d646b;
-    animation: weather-plugin-fadein 1s;
-}
-
-.weather-plugin .wind-and-highlow .temp-val#low, 
-.weather-plugin .wind-and-highlow .temp-val#high,
-.weather-plugin .week .day .temp-val {
-    font-size: 0.7rem;
-    font-weight: 600;
-    animation: weather-plugin-fadein 1s;
-    font-style: oblique;
-    color: #7d888c;
-}
-
-.weather-plugin .wind-and-highlow .temp-val .temp-fahrenheit {
-    margin-left: 0.8em;
-}
-
-.weather-plugin .wind-and-highlow .icon #icon,
-.weather-plugin .week .day .icon #icon {
-    font-size: 3rem;
-}
-
-.weather-plugin .week .day .temp-val {
+/* Location and refresh link */
+.weather-plugin #place {
     display: inline-block;
 }
-
-.weather-plugin .week .day .temp-val#temp-fahrenheit {
-    padding-left: 1em;
+.weather-plugin #weather-refresh {
+    color: purple;
+    opacity: 0.3;
+    margin-left: 0.5em;
+    font-size: 1.25em;
+    display: inline;
 }
 
-.weather-plugin .week .day label {
-    margin-top:0.8em;
+/* Current temperature number */
+.weather-plugin .today .current-temp {
+    font-weight: 300;
+    font-size: 5em;
+}
+/* When we're in large and >large layouts, re-shape and align some elements */
+@media (min-width: 992px) {
+.weather-plugin .today .current-temp {
+    margin-top: -0.5em;
+    white-space: nowrap;
+}
+.weather-plugin .today .weather-description{
+    text-align: right !important;
+}
+}
+/* When we switch from large to <large layout, begin centering some of the layout */
+@media (max-width: 992px) {
+.weather-plugin .today .weather-description,
+.weather-plugin .today .wind.wind-description,
+.weather-plugin .today .current-temps,
+.weather-plugin .today .current-temp {
+    text-align: center;
+}
 }
 
-.weather-plugin .week .day center.icon {
-    margin-bottom: -0.9em;
+/* Description of the current weather */
+.weather-plugin .weather-description {
+    font-size: 1.5em;
+    font-weight: 300;
+}
+.weather-plugin .weather-description .weather-icon {
+    margin: 0.25em;
+}
+.weather-plugin .weather-description .description {
+    white-space: nowrap;
+}
+.weather-plugin .weather-description .current-feels-like {
+    font-size: 0.75em;
 }
 
-.weather-plugin .wind-and-highlow {
-    /* eliminate row margins of -15px */
-    margin-left: 0;
-    margin-right: 0;
+/* Current wind indication */
+.weather-plugin .wind-description i {
+    font-size: 1.8em;
+}
+.weather-plugin .wind-description {
+    font-size: 0.8em;
+    font-weight: 300;
+}
+.weather-plugin .wind-description .wind-speed  {
+    display:inline-block;
+    transform: translateY(-0.2em);
 }
 
-.weather-plugin .temp .icon label,
-.weather-plugin .sun .icon label {
-    color: #5d646b;
-    animation: weather-plugin-fadein 1s;
-    padding-top: 1.5em;
-    width: 100%;
-}
-.weather-plugin .wind-and-highlow .icon #description {
-    display: inline-block;
-    margin-left: 1em;
-    color: #7d888c;
-    font-size: 0.8rem;
+/* Current low-high temperature numbers */
+.weather-plugin .today .current-high,
+.weather-plugin .today .current-low {
+    display: inline;
+    font-size: 1em;
 }
 
-.weather-plugin .sun hr {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+/* Current low-high arrow icons */
+.weather-plugin .today .current-high i.wi.wi-direction-up,
+.weather-plugin .today .current-low i.wi.wi-direction-down {
+    font-size: 1.5em;
+    transform: translateY(0.125em);
+    margin-right: 0.125em;
 }
 
-.weather-plugin .sun#times {
-    width: 100%;
+.weather-plugin .today .current-low i.wi.wi-direction-down  {
+    margin-left: 0.5em;
 }
 
-.weather-plugin #times #sunrise {
-    animation: weather-plugin-fadein 1s;
+/* Forecast temperatures */
+.weather-plugin .forecast .day {
+    text-align: center;
+}
+.weather-plugin .forecast .day i#weather-icon {
+    padding-right: 0.2em;
+}
+@media (max-width: 1200px) {
+    .weather-plugin .forecast .day #day-of-week {
+        display: none;
+    }
+    .weather-plugin .forecast .day #day-of-week-sm {
+        display: block;
+    }
+}
+@media (min-width: 1200px) {
+    .weather-plugin .forecast .day #day-of-week {
+        display: block;
+    }
+    .weather-plugin .forecast .day #day-of-week-sm {
+        display: none;
+    }
 }
 
-.weather-plugin #times #sunset {
-    animation: weather-plugin-fadein 1s;
+/* Sun & moon */
+.weather-plugin .sun .moon i {
+    font-size: 2em;
+    margin-right: 0.25em;
 }
-
-
-
-@keyframes weather-plugin-fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+.weather-plugin .sun .moon label {
+    transform: translateY(-0.45em);
+}
+.weather-plugin .sun #times #daylight {
+    margin-top: 1em;
 }

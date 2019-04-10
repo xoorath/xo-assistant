@@ -1,52 +1,63 @@
 .col-md-4.weather-plugin
     .card.mb-4
         .card-body
-            h5#place Ottawa
-            .temp
-                .temp-val#temp-celsius 0°C
-                .temp-val#temp-fahrenheit 0°F
-                center.icon
-                    i#icon.wi.wi-night-sleet
-                    label(for='icon') Sunny
-            .wind-and-highlow.row
-                .temp.section.offset-xl-1.col-xl-4.col-lg-5
-                    span.temp-val#low low: 0°C, 0°F
-                    br
-                    span.temp-val#high high: 0°C, 0°F
-                .icon.section.col-xl-7.col-lg-7
-                    i#icon.wi.wi-wind-beaufort-0
-                    span#description hurricane force
+            div
+                h5#place Ottawa 
+                a#weather-refresh.wi.wi-cloud-refresh(href="#")
+            .today
+                .row
+                    .col-lg-12.weather-description
+                        span.weather-icon
+                            i.wi.wi-night-alt-snow
+                        span.description sunny
+                        .current-feels-like
+                            span.description Feels like 9
+                            i.wi.wi-celsius
+                    .col-lg-6
+                        .current-temp
+                            span.description 9
+                            i.wi.wi-celsius
+
+                    .col-lg-6.text-right
+                        .current-temps
+                            span.current-high
+                                i.wi.wi-direction-up
+                                span.description 99
+                                i.wi.wi-celsius
+                            span.current-low
+                                i.wi.wi-direction-down 
+                                span.description 99
+                                i.wi.wi-celsius
+                    .col-lg-12.text-right
+                        .wind.wind-description
+                            i.wi.wi-wind-beaufort-4
+                            br
+                            span.wind-speed 3.14 m/s
             hr
-            .week.row
-                .day.col-lg-4#day1
-                    center#day Thursday
-                    center.icon
-                        i#icon.wi.wi-night-sleet
-                        label(for='icon') Sunny
-                    center
-                        .temp-val#temp-celsius 0°C
-                        .temp-val#temp-fahrenheit 0°F
-                .day.col-lg-4#day2
-                    center#day Friday
-                    center.icon
-                        i#icon.wi.wi-night-sleet
-                        label(for='icon') Sunny
-                    center
-                        .temp-val#temp-celsius 0°C
-                        .temp-val#temp-fahrenheit 0°F
-                .day.col-lg-4#day3
-                    center#day Saturday
-                    center.icon
-                        i#icon.wi.wi-night-sleet
-                        label(for='icon') Sunny
-                    center
-                        .temp-val#temp-celsius 0°C
-                        .temp-val#temp-fahrenheit 0°F
+            .forecast.row
+                .day.col-lg-4
+                    #day-of-week Unknown
+                    #day-of-week-sm Unk
+                    i#weather-icon.wi.wi-alien(title="unknown") 
+                    span.temp 99
+                    i.wi.wi-celsius
+                .day.col-lg-4
+                    #day-of-week Unknown
+                    #day-of-week-sm Unk
+                    i#weather-icon.wi.wi-alien(title="unknown") 
+                    span.temp 99
+                    i.wi.wi-celsius
+                .day.col-lg-4
+                    #day-of-week Unknown
+                    #day-of-week-sm Unk
+                    i#weather-icon.wi.wi-alien(title="unknown") 
+                    span.temp 99
+                    i.wi.wi-celsius
             .sun
                 hr
                 H5#section Sun & Moon
                 center.moon.icon
-                    i#icon.wi.wi-moon-alt-waxing-gibbous-4
+                    i#icon.wi.wi-alien
                     label(for='icon') waxing gibbous
                 #times
                     #sunrise.float-left 1:00am
